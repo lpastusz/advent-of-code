@@ -43,16 +43,6 @@ do {
 console.log(uniq(results).length)
 
 // SECOND
-function countChildren(type, currentCount) {
-    const children = inputs.find(e => e.parent === type).children;
+const countChildren = ((type, currentCount) => currentCount+inputs.find(e => e.parent === type).children.reduce((acc, curr) => acc + countChildren(curr.type,  currentCount*curr.count), 0))
 
-    if (!children.length) {
-        return currentCount;
-    }
-    
-    return currentCount+children.reduce((acc, curr) => acc + countChildren(curr.type,  currentCount*curr.count), 0)
-}
-
-let count = countChildren(myBag, 1) - 1;
-
-console.log(count)
+console.log(countChildren(myBag, 1) - 1);
