@@ -53,8 +53,6 @@ function countChildren(type, currentCount) {
     return currentCount+children.reduce((acc, curr) => acc + countChildren(curr.type,  currentCount*curr.count), 0)
 }
 
-let count = inputs
-    .find(e => e.parent === myBag).children
-    .reduce((acc, curr) => acc + countChildren(curr.type, curr.count), 0)
+let count = countChildren(myBag, 1) - 1;
 
 console.log(count)
