@@ -43,6 +43,11 @@ do {
 console.log(uniq(results).length)
 
 // SECOND
-const countChildren = ((type, currentCount) => currentCount+inputs.find(e => e.parent === type).children.reduce((acc, curr) => acc + countChildren(curr.type,  currentCount*curr.count), 0))
+const countChildren = ((type, currentCount) => 
+    currentCount + 
+    inputs
+        .find(e => e.parent === type)
+        .children
+            .reduce((acc, curr) => acc + countChildren(curr.type,  currentCount*curr.count), 0))
 
 console.log(countChildren(myBag, 1) - 1);
